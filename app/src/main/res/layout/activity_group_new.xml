@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vit.vn.mychat.GroupNewActivity">
+
+    <include layout="@layout/app_bar_layout" android:id="@+id/group_new_toolbar"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/group_new_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/group_new_toolbar"
+        android:layout_margin="20dp"
+        android:hint="Group Name">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/group_new_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@id/group_new_name"></android.support.v7.widget.RecyclerView>
+
+    <ImageButton
+        android:id="@+id/group_new_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="30dp"
+        android:alpha="0.8"
+        android:background="@drawable/back_fab"
+        android:src="@drawable/ic_arrow_forward_black_48dp" />
+
+</RelativeLayout>

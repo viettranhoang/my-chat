@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/group_members_add_btn"
+        android:title="Add Member" />
+
+    <item
+        android:id="@+id/group_members_delete_btn"
+        android:title="Delete Group" />
+
+    <item
+        android:id="@+id/group_members_change_btn"
+        android:title="Change Group Name" />
+
+    <item
+        android:id="@+id/group_members_out_btn"
+        android:title="Out Group" />
+
+</menu>

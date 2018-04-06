@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vit.vn.mychat.HotspotActivity">
+
+    <include layout="@layout/app_bar_layout" android:id="@+id/hotspot_toolbar" />
+
+    <ImageButton
+        android:id="@+id/hotspot_wlan_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/hotspot_toolbar"
+        android:layout_marginLeft="73dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="59dp"
+        android:alpha="0.8"
+        android:autofillHints="Create WLAN Hotspot Name: MyChat"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_wifi_tethering_black_48dp" />
+
+    <ImageButton
+        android:id="@+id/hotspot_wifi_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/hotspot_wlan_btn"
+        android:layout_marginEnd="71dp"
+        android:layout_marginRight="71dp"
+        android:alpha="0.8"
+        android:autofillHints="Connect Wifi MyChat"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_wifi_black_48dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/hotspot_wlan_btn"
+        android:layout_alignStart="@+id/hotspot_wlan_btn"
+        android:layout_below="@+id/hotspot_wlan_btn"
+        android:text="CREATE"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignEnd="@+id/hotspot_wifi_btn"
+        android:layout_alignRight="@+id/hotspot_wifi_btn"
+        android:layout_below="@+id/hotspot_wifi_btn"
+        android:paddingRight="20dp"
+        android:text="JOIN"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/hotspot_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:hint="User Name"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/hotspot_chat_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hotspot_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:background="@color/colorPrimary"
+        android:text="CHAT"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hotspot_chat_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:text="Create: Create WLAN Hotspot Name: MyChat\nJoin: Connect WIFI name - MyChat" />
+
+</RelativeLayout>

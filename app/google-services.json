@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "186357313898",
+    "firebase_url": "https://mychat-2e974.firebaseio.com",
+    "project_id": "mychat-2e974",
+    "storage_bucket": "mychat-2e974.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186357313898:android:708d3463bcef2c1c",
+        "android_client_info": {
+          "package_name": "vit.vn.mychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186357313898-rae0q7a7lu41f4c02ounk09cnpl4efd2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vit.vn.mychat",
+            "certificate_hash": "2c5dd2fcd120d1d9adb2cb836e392829a07be148"
+          }
+        },
+        {
+          "client_id": "186357313898-7auuvrdrv5vouqk8hughnus2d1t5105g.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "186357313898-q4gh17aid494unm4lur0mh1ddh2g1v0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDnjBhyKHOcyLVDN10oKh25p5Zcwmm4_U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186357313898-7auuvrdrv5vouqk8hughnus2d1t5105g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
