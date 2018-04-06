@@ -17,51 +17,55 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private TextInputLayout txtEmail;
-    private TextInputLayout txtPassword;
-    private Button btnLogin;
-    private Toolbar toolbar;
-    private ProgressDialog loginProgress;
+    @BindView(R.id.register_input_email)
+        TextInputLayout inputEmail;
+    @BindView(R.id.register_input_password)
+        TextInputLayout inputPassword;
+    @BindView(R.id.login_button_login)
+        Button btnLogin;
+    @BindView(R.id.login_toolbar)
+        Toolbar toolbar;
+
+    private ProgressDialog mLoginDialog;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
+
         mAuth = FirebaseAuth.getInstance();
-        loginProgress = new ProgressDialog(this);
+        mLoginDialog = new ProgressDialog(this);
 
         setToolbar();
-        addControls();
-        addEvents();
+    }
+
+    @OnClick(R.id.login_button_login)
+    public void onLoginClick(View view) {
+        String email = inputEmail.getEditText().getText().toString();
+        String password = inputPassword.getEditText().getText().toString();
+
+        if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
+            mLoginDialog.setTitle("Logning In");
+            mLoginDialog.setMessage("Please wait");
+            mLoginDialog.setCanceledOnTouchOutside(false);
+            mLoginDialog.show();
+
+            loginUser(email, password);
+        }
     }
 
     private void setToolbar() {
-        toolbar = findViewById(R.id.login_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Login");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    private void addEvents() {
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = txtEmail.getEditText().getText().toString();
-                String password = txtPassword.getEditText().getText().toString();
-
-                if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
-                    loginProgress.setTitle("Logning In");
-                    loginProgress.setMessage("Please wait");
-                    loginProgress.setCanceledOnTouchOutside(false);
-                    loginProgress.show();
-                    loginUser(email, password);
-                }
-
-            }
-        });
     }
 
     private void loginUser(String email, String password) {
@@ -70,15 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-                            loginProgress.dismiss();
+                            mLoginDialog.dismiss();
 
                             Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
                             finish();
                         } else {
-                            loginProgress.hide();
+                            mLoginDialog.hide();
                             Toast.makeText(LoginActivity.this, "Cannot Sign in. Please check the from and try again",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -86,9 +89,4 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void addControls() {
-        txtEmail = findViewById(R.id.txtEmail);
-        txtPassword = findViewById(R.id.txtPassword);
-        btnLogin = findViewById(R.id.btnLogin);
-    }
 }

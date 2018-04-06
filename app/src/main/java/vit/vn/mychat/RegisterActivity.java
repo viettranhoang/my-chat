@@ -22,66 +22,61 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class RegisterActivity extends AppCompatActivity {
 
+    @BindView(R.id.register_input_name)
+        TextInputLayout inputName;
+    @BindView(R.id.register_input_email)
+        TextInputLayout inputEmail;
+    @BindView(R.id.register_input_password)
+        TextInputLayout inputPassword;
+    @BindView(R.id.register_button_create)
+        Button btnCreate;
+    @BindView(R.id.register_toolbar)
+        Toolbar toolbar;
+
     private FirebaseAuth mAuth;
-    private TextInputLayout txtName;
-    private TextInputLayout txtEmail;
-    private TextInputLayout txtPassword;
-    private Button btnCreate;
-    private Toolbar toolbar;
+    private DatabaseReference mDatabase;
 
-    //ProgressDialog
-    private ProgressDialog regProgress;
-
-    private DatabaseReference database;
+    private ProgressDialog mRegDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
 
-        regProgress = new ProgressDialog(this);
+        mRegDialog = new ProgressDialog(this);
 
         setToolbar();
-        addControls();
-        addEvents();
     }
 
     private void setToolbar() {
-        toolbar = findViewById(R.id.register_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Create Account");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void addControls() {
-        txtName = findViewById(R.id.profile_díplayName);
-        txtEmail = findViewById(R.id.txtEmail);
-        txtPassword = findViewById(R.id.txtPassword);
-        btnCreate = findViewById(R.id.btnCreate);
-    }
+    @OnClick(R.id.register_button_create)
+    public void onCreateClick(View view) {
+        String displayName = inputName.getEditText().getText().toString();
+        String email = inputEmail.getEditText().getText().toString();
+        String password = inputPassword.getEditText().getText().toString();
 
-    private void addEvents() {
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String displayName = txtName.getEditText().getText().toString();
-                String email = txtEmail.getEditText().getText().toString();
-                String password = txtPassword.getEditText().getText().toString();
+        if (!TextUtils.isEmpty(displayName) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
+            mRegDialog.setTitle("Registering User");
+            mRegDialog.setMessage("Please wait");
+            mRegDialog.setCanceledOnTouchOutside(false);
+            mRegDialog.show();
 
-                if (!TextUtils.isEmpty(displayName) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
-                    regProgress.setTitle("Registering User");
-                    regProgress.setMessage("Please wait");
-                    regProgress.setCanceledOnTouchOutside(false);
-                    regProgress.show();
-                    registerUser(displayName, email, password);
-                }
-
-            }
-        });
+            registerUser(displayName, email, password);
+        }
     }
 
     private void registerUser(final String displayName, String email, String password) {
@@ -94,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                             FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                             String uid = current_user.getUid();
 
-                            database = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                            mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
                             HashMap<String, String> userMap = new HashMap<>();
                             userMap.put("name", displayName);
@@ -102,11 +97,11 @@ public class RegisterActivity extends AppCompatActivity {
                             userMap.put("image", "default");
                             userMap.put("thumb_image", "default");
 
-                            database.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()) {
-                                        regProgress.dismiss();
+                                        mRegDialog.dismiss();
 
                                         Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
                                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -117,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                             });
 
                         } else {
-                            regProgress.hide();
+                            mRegDialog.hide();
                             Toast.makeText(RegisterActivity.this, "Cannot Sign in. Please check the from and try again",
                                     Toast.LENGTH_SHORT).show();
                         }

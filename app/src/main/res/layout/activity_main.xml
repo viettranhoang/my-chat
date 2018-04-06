@@ -24,7 +24,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/main_tabPager"
+        android:id="@+id/main_tab_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -38,13 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:weightSum="5">
 
         <ImageButton
-            android:id="@+id/main_home_btn"
+            android:id="@+id/main_button_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -52,46 +51,51 @@
             android:background="@android:color/white"
             android:contextClickable="true"
             android:padding="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_home_black_36dp" />
 
         <ImageButton
-            android:id="@+id/main_group_btn"
+            android:id="@+id/main_button_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:alpha="0.5"
             android:background="@android:color/white"
             android:padding="10dp"
-            app:srcCompat="@drawable/ic_group_add_black_36dp" />
+            android:foreground="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/ic_person_add_black_24dp" />
 
         <ImageButton
-            android:id="@+id/main_user_btn"
+            android:id="@+id/main_button_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:alpha="0.5"
             android:background="@android:color/white"
             android:padding="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_person_black_36dp" />
 
         <ImageButton
-            android:id="@+id/main_bot_btn"
+            android:id="@+id/main_button_bot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:alpha="0.5"
             android:background="@android:color/white"
             android:padding="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/bot" />
 
         <ImageButton
-            android:id="@+id/main_wifi_btn"
+            android:id="@+id/main_button_wifi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:alpha="0.5"
             android:background="@android:color/white"
             android:padding="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_chat_wifi_black_36dp" />
     </LinearLayout>
 

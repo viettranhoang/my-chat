@@ -4,35 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_purple"
+    android:background="@drawable/bg"
+
     tools:context="vit.vn.mychat.StartActivity">
 
+    <ImageView
+        android:layout_above="@id/start_text_welcome"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_start"
+        android:layout_width="170dp"
+        android:layout_height="200dp" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/start_text_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Welcome to My Chat"
+        android:textColor="#fff"
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/btnReg"
-        android:layout_width="wrap_content"
+        android:id="@+id/start_button_signup"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/start_text_welcome"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="100dp"
         android:text="Singup" />
 
     <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        android:id="@+id/login_button_login"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnReg"
-        android:layout_alignStart="@+id/btnReg"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="23dp"
+        android:layout_alignLeft="@+id/start_button_signup"
+        android:layout_alignStart="@+id/start_button_signup"
+        android:layout_below="@+id/start_text_welcome"
+        android:layout_marginTop="35dp"
         android:background="@color/colorAccent"
         android:text="Login"
         android:textColor="@android:color/white" />

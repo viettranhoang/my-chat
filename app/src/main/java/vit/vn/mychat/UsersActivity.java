@@ -8,34 +8,38 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnTextChanged;
 import de.hdodenhof.circleimageview.CircleImageView;
 import vit.vn.mychat.model.Users;
-import vit.vn.mychat.utils.GetTimeAgo;
 import vit.vn.mychat.viewholder.ChatViewHolder;
 
 public class UsersActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
+    @BindView(R.id.users_custom_bar_image)
+    CircleImageView mImageProfile;
 
-    private RecyclerView mUsersList;
-    private CircleImageView mProfileImage;
-    private ImageButton mSearchBtn;
-    private EditText mSearchText;
+    @BindView(R.id.users_custom_bar_text_search)
+    EditText mInputSearch;
+
+    @BindView(R.id.users_list)
+    RecyclerView mUsersList;
+
+    private Toolbar mToolbar;
 
     private DatabaseReference mUsersDatabase;
     private FirebaseAuth mAuth;
@@ -50,17 +54,32 @@ public class UsersActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
-       addControls();
-    }
-
-    private void addControls() {
-        mUsersList = findViewById(R.id.users_list);
         mUsersList.setHasFixedSize(true);
         mUsersList.setLayoutManager(new LinearLayoutManager(this));
 
-        mProfileImage = findViewById(R.id.custom_bar_image_search);
-        mSearchBtn = findViewById(R.id.custom_bar_btn);
-        mSearchText = findViewById(R.id.custom_bar_text_search);
+        addTextSearchListener();
+    }
+
+
+    private void addTextSearchListener() {
+
+        mInputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //search
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void setToolbar() {
@@ -72,7 +91,7 @@ public class UsersActivity extends AppCompatActivity {
         actionBar.setDisplayShowCustomEnabled(true);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View action_bar_view = inflater.inflate(R.layout.search_custom_bar_layout, null);
+        View action_bar_view = inflater.inflate(R.layout.users_custom_bar_layout, null);
 
         actionBar.setCustomView(action_bar_view);
 
@@ -108,7 +127,6 @@ public class UsersActivity extends AppCompatActivity {
 
                     }
                 });
-
             }
         };
 

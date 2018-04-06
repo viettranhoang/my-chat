@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 
 import vit.vn.mychat.adapter.SectionsPagerAdapter;
 
@@ -88,18 +87,18 @@ public class MainActivity extends AppCompatActivity{
 
     private void addControls() {
         //Tabs
-        viewPager = findViewById(R.id.main_tabPager);
+        viewPager = findViewById(R.id.main_tab_pager);
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(sectionsPagerAdapter);
 
         tabLayout = findViewById(R.id.main_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        btnHome = findViewById(R.id.main_home_btn);
-        btnGroup = findViewById(R.id.main_group_btn);
-        btnUser = findViewById(R.id.main_user_btn);
-        btnBot = findViewById(R.id.main_bot_btn);
-        btnWifi = findViewById(R.id.main_wifi_btn);
+        btnHome = findViewById(R.id.main_button_home);
+        btnGroup = findViewById(R.id.main_button_group);
+        btnUser = findViewById(R.id.main_button_user);
+        btnBot = findViewById(R.id.main_button_bot);
+        btnWifi = findViewById(R.id.main_button_wifi);
 
     }
 

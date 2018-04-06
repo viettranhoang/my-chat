@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:weightSum="10">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/custom_bar_image"
+        android:id="@+id/users_custom_bar_image"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignBottom="@+id/custom_bar_seen"
@@ -14,22 +16,15 @@
         android:layout_marginRight="12dp"
         android:src="@drawable/default_avatar" />
 
-    <TextView
-        android:id="@+id/custom_bar_title"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/users_custom_bar_text_search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="Display Name"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toStartOf="@+id/search_bar_image"
+        android:hint="Search" />
 
-    <TextView
-        android:id="@+id/custom_bar_seen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/custom_bar_title"
-        android:text="Last Seen"
-        android:textColor="@android:color/white"
-        android:textSize="13sp" />
 
 </RelativeLayout>
