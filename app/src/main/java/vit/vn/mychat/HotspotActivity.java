@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,8 +23,8 @@ public class HotspotActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
     private TextInputLayout mUser;
-    private ImageButton mCreateBtn;
-    private ImageButton mJoinBtn;
+    private ImageView mCreateBtn;
+    private ImageView mJoinBtn;
     private Button mChatBtn;
 
     private String networkSSID = "My Chat";
@@ -77,9 +77,9 @@ public class HotspotActivity extends AppCompatActivity {
     }
 
     private void addControls() {
-        mUser = findViewById(R.id.hotspot_username);
-        mCreateBtn = findViewById(R.id.hotspot_wlan_btn);
-        mJoinBtn = findViewById(R.id.hotspot_wifi_btn);
+        mUser = findViewById(R.id.hotspot_input_username);
+        mCreateBtn = findViewById(R.id.hotspot_button_create);
+        mJoinBtn = findViewById(R.id.hotspot_button_join);
         mChatBtn = findViewById(R.id.hotspot_chat_btn);
     }
 
