@@ -11,21 +11,32 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class HotspotActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
+    @BindView(R.id.hotspot_toolbar)
+    Toolbar mToolbar;
 
-    private TextInputLayout mUser;
-    private ImageView mCreateBtn;
-    private ImageView mJoinBtn;
-    private Button mChatBtn;
+    @BindView(R.id.hotspot_input_username)
+    TextInputLayout mInputUser;
+
+    @BindView(R.id.hotspot_button_create)
+    ImageView mCreateBtn;
+
+    @BindView(R.id.hotspot_button_join)
+    ImageView mJoinBtn;
+
+    @BindView(R.id.hotspot_button_chat)
+    Button mChatBtn;
 
     private String networkSSID = "My Chat";
     private String networkPass = "pass";
@@ -36,55 +47,38 @@ public class HotspotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotspot);
+        ButterKnife.bind(this);
 
         setToolbar();
-        addControls();
-        addEvents();
     }
 
-    private void addEvents() {
-        mCreateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CreateWifiAccessPoint createOne = new CreateWifiAccessPoint();
-                createOne.execute((Void) null);
-            }
-        });
-
-        mJoinBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                JoinWifiNetwork joinOne = new JoinWifiNetwork();
-                joinOne.execute((Void) null);
-            }
-        });
-
-        mChatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userName = mUser.getEditText().getText().toString();
-                if (userName.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Make Sure to Fill UserName Text & ChatName Text", Toast.LENGTH_SHORT).show();
-                } else if (hotspot == false && wifi == false) {
-                    Toast.makeText(getApplicationContext(), "Make Sure to Connect to the WiFi network", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent i = new Intent(HotspotActivity.this, HotspotChatActivity.class);
-                    i.putExtra("name", userName);
-                    startActivity(i);
-                }
-            }
-        });
+    @OnClick(R.id.hotspot_button_create)
+    void onClickCreate(View view) {
+        CreateWifiAccessPoint createOne = new CreateWifiAccessPoint();
+        createOne.execute((Void) null);
     }
 
-    private void addControls() {
-        mUser = findViewById(R.id.hotspot_input_username);
-        mCreateBtn = findViewById(R.id.hotspot_button_create);
-        mJoinBtn = findViewById(R.id.hotspot_button_join);
-        mChatBtn = findViewById(R.id.hotspot_chat_btn);
+    @OnClick(R.id.hotspot_button_join)
+    void onClickJoin(View view) {
+        JoinWifiNetwork joinOne = new JoinWifiNetwork();
+        joinOne.execute((Void) null);
+    }
+
+    @OnClick(R.id.hotspot_button_create)
+    void onClickChat(View view) {
+        String userName = mInputUser.getEditText().getText().toString();
+        if (userName.equals("")) {
+            Toast.makeText(getApplicationContext(), "Make Sure to Fill UserName Text & ChatName Text", Toast.LENGTH_SHORT).show();
+        } else if (hotspot == false && wifi == false) {
+            Toast.makeText(getApplicationContext(), "Make Sure to Connect to the WiFi network", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent i = new Intent(HotspotActivity.this, HotspotChatActivity.class);
+            i.putExtra("name", userName);
+            startActivity(i);
+        }
     }
 
     private void setToolbar() {
-        mToolbar = findViewById(R.id.hotspot_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Setup Connect");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

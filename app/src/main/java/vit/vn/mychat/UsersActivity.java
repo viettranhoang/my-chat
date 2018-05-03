@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnTextChanged;
 import de.hdodenhof.circleimageview.CircleImageView;
 import vit.vn.mychat.model.Users;
@@ -30,16 +31,15 @@ import vit.vn.mychat.viewholder.ChatViewHolder;
 
 public class UsersActivity extends AppCompatActivity {
 
-    @BindView(R.id.users_custom_bar_image)
-    CircleImageView mImageProfile;
+    private CircleImageView mImageProfile;
 
-    @BindView(R.id.users_custom_bar_text_search)
-    EditText mInputSearch;
+    private EditText mInputSearch;
 
     @BindView(R.id.users_list)
     RecyclerView mUsersList;
 
-    private Toolbar mToolbar;
+    @BindView(R.id.users_toolbar)
+    Toolbar mToolbar;
 
     private DatabaseReference mUsersDatabase;
     private FirebaseAuth mAuth;
@@ -48,7 +48,7 @@ public class UsersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
-
+        ButterKnife.bind(this);
         setToolbar();
 
         mAuth = FirebaseAuth.getInstance();
@@ -83,7 +83,6 @@ public class UsersActivity extends AppCompatActivity {
     }
 
     private void setToolbar() {
-        mToolbar = findViewById(R.id.users_toolbar);
         setSupportActionBar(mToolbar);
 
         ActionBar actionBar = getSupportActionBar();

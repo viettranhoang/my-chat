@@ -60,6 +60,9 @@ public class LoginActivity extends AppCompatActivity {
 
             loginUser(email, password);
         }
+        else {
+            Toast.makeText(LoginActivity.this, "Moi ban nhap thong tin", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setToolbar() {
